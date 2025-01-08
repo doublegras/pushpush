@@ -6,7 +6,7 @@
 /*   By: maambuhl <marcambuehl4@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:33:59 by maambuhl          #+#    #+#             */
-/*   Updated: 2025/01/07 21:54:51 by maambuhl         ###   LAUSANNE.ch       */
+/*   Updated: 2025/01/08 16:45:59 by maambuhl         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,6 @@ int	make_mv_a(t_stack_info *stack_i, int index_to_mv)
 	size_a = stack_i->size - (*stack_i->b + 1);
 	head = stack_i->stack[(*stack_i->b) + 1];
 	nb = stack_i->stack[index_to_mv];
-
 	if (stack_i->place > (*stack_i->b / 2) && index_to_mv < (size_a / 2))
 	{ // rb
 		if (stack_i->nb_mv_a > stack_i->nb_mv_b)
@@ -252,6 +251,7 @@ int	make_mv_a(t_stack_info *stack_i, int index_to_mv)
 			stack_i->place--;
 	}
 	i = 0;
+	head = stack_i->stack[(*stack_i->b) + 1];
 	while (head != nb)
 	{
 		if (index_to_mv < (size_a / 2))

@@ -1,12 +1,12 @@
-
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maambuhl <marcambuehl4@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 14:33:29 by maambuhl          #+#    #+#             */
-/*   Updated: 2025/01/06 16:09:51 by maambuhl         ###   LAUSANNE.ch       */
+/*   Created: 2025/01/08 15:33:41 by maambuhl          #+#    #+#             */
+/*   Updated: 2025/01/08 16:47:21 by maambuhl         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	algo(t_stack_info *stack_i)
 			i = find_best_index(stack_i->stack, stack_i->b, place, stack_i->size);
 		}
 		pb(stack_i->b, stack_i->size, 1);
-		/*print_s(b, stack, size);*/
 	}
 	i = 0;
 	while (i < stack_i->size)
@@ -115,7 +114,7 @@ void	algo(t_stack_info *stack_i)
 	min = stack_i->stack[find_min(stack_i->stack, stack_i->size - 1)];
 	while (*stack_i->stack != min)
 		ra(stack_i->stack, stack_i->size, stack_i->b, 1);
-	print_s(stack_i->b, stack_i->stack, stack_i->size);
+	// print_s(stack_i->b, stack_i->stack, stack_i->size);
 }
 
 int	main(int ac, char **av)

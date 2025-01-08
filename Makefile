@@ -40,7 +40,7 @@ fclean : clean
 	$(RM) $(NAME)
 
 wasm: 
-	docker run --rm -v $(shell pwd):/src emscripten/emsdk emcc $(SRC) -o $(NAME).wasm
+	docker run --rm -v $(shell pwd):/src emscripten/emsdk emcc src/*.c ./libft/*.c -o $(NAME).wasm
 
 re: fclean all
 
