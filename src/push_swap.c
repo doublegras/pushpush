@@ -6,7 +6,7 @@
 /*   By: maambuhl <marcambuehl4@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 15:33:41 by maambuhl          #+#    #+#             */
-/*   Updated: 2025/01/08 16:47:21 by maambuhl         ###   LAUSANNE.ch       */
+/*   Updated: 2025/01/09 13:50:11 by maambuhl         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,11 @@ void	algo(t_stack_info *stack_i)
 
 	while ((*stack_i->b + 1) < stack_i->size)
 	{
-		place = push_basic(stack_i);
+		// place = push_basic(stack_i);
+		stack_i->min = find_min(stack_i->stack, *stack_i->b);
+		stack_i->max = find_max(stack_i->stack, *stack_i->b);
 		best_index = 0;
+		place = -2;
 		if (place == -1)
 		{
 			/*print_s(b, stack, size);*/
@@ -86,7 +89,7 @@ void	algo(t_stack_info *stack_i)
 		}
 		if (place == -2)
 		{
-			place = find_place(stack_i->stack, stack_i->b);
+			place = find_place(stack_i->stack, stack_i->b, stack_i);
 			stack_i->best_index_b = place;
 			init_min_mv = offset_b(stack_i, place);
 			best_index = find_best_i(stack_i, init_min_mv);

@@ -6,7 +6,7 @@
 /*   By: maambuhl <marcambuehl4@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:33:59 by maambuhl          #+#    #+#             */
-/*   Updated: 2025/01/08 16:45:59 by maambuhl         ###   LAUSANNE.ch       */
+/*   Updated: 2025/01/09 13:49:27 by maambuhl         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,15 @@ int	push_basic(t_stack_info *stack_i)
 	return (-2);
 }
 
-int	find_place(int *stack, int *b)
+int	find_place(int *stack, int *b, t_stack_info *stack_i)
 {
 	int	to_place;
 	int	i;
 
 	i = *b;
 	to_place = stack[(*b) + 1];
+	if (to_place >= stack[stack_i->max] || to_place <= stack[stack_i->min])
+		return (stack_i->max);
 	while (i)
 	{
 		if (to_place > stack[i - 1] && to_place < stack[i])
@@ -122,11 +124,16 @@ int	offset_a(t_stack_info *stack_i, int tmp_b)
 {
 	int	size_a;
 	
+	tmp_b = tmp_b - (*stack_i->b + 1);
 	size_a = stack_i->size - (*stack_i->b + 1);
+	// if (tmp_b < (size_a / 2))
+	// 	return (tmp_b - (*stack_i->b + 1));
+	// else
+	// 	return (stack_i->size - tmp_b);
 	if (tmp_b < (size_a / 2))
-		return (tmp_b - (*stack_i->b + 1));
+		return (tmp_b);
 	else
-		return (stack_i->size - tmp_b);
+		return (size_a - tmp_b);
 }
 
 int	offset_b(t_stack_info *stack_i, int place)
@@ -163,7 +170,7 @@ int	find_best_i(t_stack_info *stack_i, int init_min_mv)
 		{
 			//rrb
 			nb_mv_b = place + 1;
-			if (tmp_b > (size_a / 2))
+			if (tmp_b - (*stack_i->b + 1) > (size_a / 2))
 			{ // rra
 				if (nb_mv_a > nb_mv_b)
 					nb_mv = nb_mv_a;
@@ -178,7 +185,7 @@ int	find_best_i(t_stack_info *stack_i, int init_min_mv)
 			//rb
 			// nb_mv += *stack_i->b - place;
 			nb_mv_b = *stack_i->b - place;
-			if (tmp_b < (size_a / 2))
+			if (tmp_b - (*stack_i->b + 1) < (size_a / 2))
 			{ // ra
 				if (nb_mv_a > nb_mv_b)
 					nb_mv = nb_mv_a;
@@ -218,6 +225,7 @@ int	make_mv_a(t_stack_info *stack_i, int index_to_mv)
 	size_a = stack_i->size - (*stack_i->b + 1);
 	head = stack_i->stack[(*stack_i->b) + 1];
 	nb = stack_i->stack[index_to_mv];
+	index_to_mv = index_to_mv - (*stack_i->b + 1);
 	if (stack_i->place > (*stack_i->b / 2) && index_to_mv < (size_a / 2))
 	{ // rb
 		if (stack_i->nb_mv_a > stack_i->nb_mv_b)
