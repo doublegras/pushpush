@@ -6,7 +6,7 @@
 /*   By: maambuhl <marcambuehl4@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:56:46 by maambuhl          #+#    #+#             */
-/*   Updated: 2025/01/09 13:49:00 by maambuhl         ###   LAUSANNE.ch       */
+/*   Updated: 2025/01/14 17:19:17 by maambuhl         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_stack_info
 	int	nb_mv_b;
 	int	best_index_b;
 	int	best_index_a;
+	int	tmp_mv_b;
 	int	tmp_max;
 	int	tmp_min;
 }	t_stack_info;
@@ -49,11 +50,18 @@ void	rrb(int *stack, int *b, int print);
 void	rrr(int *stack, int size, int *b);
 int		find_max(int *stack, int b);
 int		find_min(int *stack, int b);
-int		find_best_index(int *stack, int *b, int a, int size);
+int		make_mv_b(int *stack, int *b, int a);
 int		find_best_i(t_stack_info *stack_i, int init_min_mv);
 int		push_basic(t_stack_info *stack_i);
 int		find_place(int *stack, int *b, t_stack_info *stack_i);
-int		make_mv_a(t_stack_info *stack_i, int index_to_mv);
+int		initiate_mv_a(t_stack_info *stack_i, int index_to_mv, int nb);
+void	make_mv_a(t_stack_info *stack_i, int index_to_mv, int nb);
 int		offset_b(t_stack_info *stack_i, int place);
+void	final_push_to_a(t_stack_info *stack_i);
+void	make_rr_rrr(t_stack_info *stack_i, int nb_rr, int nb_rrr);
+int		count_mv(int tmp_b, int nb_mv_b, int nb_mv_a, t_stack_info *stack_i);
+int		find_place_i(t_stack_info *stack_i, int to_place);
+int		is_sorted(t_stack_info *stack_i);
+void	last_three(t_stack_info *stack_i);
 
 #endif

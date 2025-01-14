@@ -13,7 +13,7 @@ SRC_DIR = src
 GCCFLAGS = -g -Wall -Werror -Wextra
 
 SRC = push_swap.c push_utils.c push_instructions.c push_instructions_r.c push_instructions_rr.c \
-	  push_utils1.c
+	  push_utils1.c push_utils2.c make_mv.c push_utils3.c
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 	
@@ -34,6 +34,7 @@ $(OBJ_DIR):
 clean:
 	make -C $(LIBC_DIR) clean
 	$(RM) $(OBJ_DIR)
+	$(RM) $(NAME).wasm
 
 fclean : clean
 	make -C $(LIBC_DIR) fclean
