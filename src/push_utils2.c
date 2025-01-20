@@ -6,7 +6,7 @@
 /*   By: maambuhl <marcambuehl4@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:31:34 by maambuhl          #+#    #+#             */
-/*   Updated: 2025/01/14 15:58:07 by maambuhl         ###   LAUSANNE.ch       */
+/*   Updated: 2025/01/20 14:39:32 by maambuhl         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	final_push_to_a(t_stack_info *stack_i)
 	i = 0;
 	min_i = find_min(stack_i->stack, stack_i->size - 1);
 	min = stack_i->stack[min_i];
-	if (min_i < (stack_i->size / 2))
+	if (min_i <= (stack_i->size / 2))
 	{
 		while (*stack_i->stack != min)
 			ra(stack_i->stack, stack_i->size, stack_i->b, 1);
