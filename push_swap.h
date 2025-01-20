@@ -6,7 +6,7 @@
 /*   By: maambuhl <marcambuehl4@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:56:46 by maambuhl          #+#    #+#             */
-/*   Updated: 2025/01/14 17:19:17 by maambuhl         ###   LAUSANNE.ch       */
+/*   Updated: 2025/01/19 14:49:51 by maambuhl         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,8 @@ int		count_mv(int tmp_b, int nb_mv_b, int nb_mv_a, t_stack_info *stack_i);
 int		find_place_i(t_stack_info *stack_i, int to_place);
 int		is_sorted(t_stack_info *stack_i);
 void	last_three(t_stack_info *stack_i);
+int		min_stack_a(t_stack_info *stack_i);
+int		max_stack_a(t_stack_info *stack_i);
+void	more_three(t_stack_info *stack_i);
 
 #endif

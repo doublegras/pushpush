@@ -6,7 +6,7 @@
 /*   By: maambuhl <marcambuehl4@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 15:33:41 by maambuhl          #+#    #+#             */
-/*   Updated: 2025/01/14 17:24:56 by maambuhl         ###   LAUSANNE.ch       */
+/*   Updated: 2025/01/20 13:35:51 by maambuhl         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,9 @@ void	algo(t_stack_info *stack_i)
 	int	place;
 	int	best_index;
 	int	init_min_mv;
-	int	i;
-	int	nb_last_pb;
 
-	// pb(stack_i->b, stack_i->size, 1);
-	// pb(stack_i->b, stack_i->size, 1);
-	nb_last_pb = 0;
+	pb(stack_i->b, stack_i->size, 1);
+	pb(stack_i->b, stack_i->size, 1);
 	while ((*stack_i->b + 1) < stack_i->size)
 	{
 		best_index = 0;
@@ -90,17 +87,12 @@ void	algo(t_stack_info *stack_i)
 		best_index = find_best_i(stack_i, init_min_mv);
 		if (best_index)
 		{
-			i = initiate_mv_a(stack_i, best_index, stack_i->stack[best_index]);
+			initiate_mv_a(stack_i, best_index, stack_i->stack[best_index]);
 			place = stack_i->place;
 		}
-		i = make_mv_b(stack_i->stack, stack_i->b, place);
+		make_mv_b(stack_i->stack, stack_i->b, place);
 		pb(stack_i->b, stack_i->size, 1);
-		if (!i)
-			nb_last_pb++;
-		else
-			nb_last_pb = 0;
 	}
-	printf("last pb = %d\n", nb_last_pb);
 	final_push_to_a(stack_i);
 }
 
@@ -128,16 +120,21 @@ int	main(int ac, char **av)
 		last_three(&stack_i);
 		// print_s(stack_i.b, stack_i.stack, stack_i.size);
 	}
-	if (ac == 6)
+	if (ac <= 6)
 	{
-		pb(stack_i.b, stack_i.size, 1);
-		pb(stack_i.b, stack_i.size, 1);
+		while (--ac > 3)
+			pb(stack_i.b, stack_i.size, 1);
+		// pb(stack_i.b, stack_i.size, 1);
 		last_three(&stack_i);
-		// pa(stack_i.b, 1);
-		// pa(stack_i.b, 1);
+		while (--ac)
+		{
+			more_three(&stack_i);
+			// print_s(stack_i.b, stack_i.stack, stack_i.size);
+		}
+		final_push_to_a(&stack_i);;
 		// print_s(stack_i.b, stack_i.stack, stack_i.size);
 	}
 	if (is_sorted(&stack_i))
 		algo(&stack_i);
-	print_s(stack_i.b, stack_i.stack, stack_i.size);
+	// print_s(stack_i.b, stack_i.stack, stack_i.size);
 }
